@@ -1,18 +1,27 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div class="h-full flex flex-col justify-center align-middle">
+    <div class="flex-col">
+      <template-home-page :props="{ confirmacao, termos }" />
+      <template-terms-confirmation />
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
+import TemplateHomePage from "@/components/home-page/templates/TemplateHomePage";
+import TemplateTermsConfirmation from "@/components/terms-conditions-page/templates/TemplateTermsConfirmation";
+import { mapGetters } from "vuex";
 export default {
   name: "Home",
   components: {
-    HelloWorld
+    TemplateHomePage,
+    TemplateTermsConfirmation
+  },
+  computed: {
+    ...mapGetters({
+      confirmacao: "getInformacoesConfirmadas",
+      termos: "getTermosCondicoes"
+    })
   }
 };
 </script>
